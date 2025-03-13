@@ -4,29 +4,24 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'g++ -o PES2UG22CS223-1 hello.cpp'
-                echo 'Build Stage Successful'
+                sh 'g++ main/hello.cpp -o PES2UG22CS223'
             }
         }
-        
         stage('Test') {
             steps {
-                sh './PES2UG22CS223-1'
-                echo 'Test Stage Successful'
+                sh './PES2UG22CS223'
             }
         }
-        
         stage('Deploy') {
             steps {
-                sh 'cp PES2UG22CS223-1 /tmp/'
-                echo 'Deployment Successful'
+                sh 'echo "Deploying application..."'
             }
         }
     }
-    
+
     post {
         failure {
-            echo 'Pipeline failed'
-        }
-    }
+            echo 'Pipeline Failed'
+        }
+    }
 }
